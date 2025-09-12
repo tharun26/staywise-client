@@ -23,10 +23,10 @@ const TopBar = ({ setShowLoginModal, setShowSignupModal }) => {
             style={{ background: "transparent" }}
           />
           <Button variant="outline" onClick={() => handleCityClick("New York")}>
-            New York
+            Amsterdam
           </Button>
           <Button variant="outline" onClick={() => handleCityClick("Tokyo")}>
-            Tokyo
+            Berlin
           </Button>
           <Button variant="outline" onClick={() => handleCityClick("Italy")}>
             Italy

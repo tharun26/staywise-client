@@ -7,6 +7,8 @@ import SideBar from "@/components/components/SideBar";
 
 import LoginModal from "./components/components/LoginModal";
 import SignupModal from "./components/components/SignupModal";
+import UserProfilePage from "./pages/UserProfilePage";
+import MyFavoritesPage from "./pages/MyFavoritesPage";
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -36,6 +38,8 @@ function App() {
               path="/listing/:listingid"
               element={<ListingDetailsPage />}
             />
+            <Route path="/user/favorites" element={<MyFavoritesPage />} />
+            <Route path="/user" element={<UserProfilePage />} />
           </Routes>
         </div>
       </div>

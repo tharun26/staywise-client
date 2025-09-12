@@ -17,27 +17,24 @@ const SideBar = () => {
           <Home className="w-6 h-6" />
           Home
         </div>
-        <a
-          href="#"
-          className="flex items-center gap-3 text-gray-700 text-lg font-semibold"
-        >
+        <div className="flex items-center gap-3 text-gray-700 text-lg font-semibold  cursor-pointer">
           <CalendarCheck className="w-6 h-6" />
           My Bookings
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 text-gray-700 text-lg font-semibold"
+        </div>
+        <div
+          className="flex items-center gap-3 text-gray-700 text-lg font-semibold  cursor-pointer"
+          onClick={() => navigate("/user/favorites")}
         >
           <Heart className="w-6 h-6" />
           My Favourites
-        </a>
-        <a
-          href="#"
-          className="flex items-center gap-3 text-gray-700 text-lg font-semibold"
+        </div>
+        <div
+          className="flex items-center gap-3 text-gray-700 text-lg font-semibold cursor-pointer"
+          onClick={() => navigate("/user")}
         >
-          <User className="w-6 h-6" />
+          <User className="w-6 h-6 " />
           User Profile
-        </a>
+        </div>
       </nav>
     </aside>
   );
