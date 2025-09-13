@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { useAuth } from "../hooks/useAuth";
+import { toast } from "sonner";
 
 export const AuthContext = createContext(null);
 function AuthContextProvider({ children }) {
@@ -7,6 +8,7 @@ function AuthContextProvider({ children }) {
 
   const logout = () => {
     localStorage.removeItem("authToken");
+    toast.success("Logged-Out Successfully");
     setUser("");
   };
 

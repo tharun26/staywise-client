@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchUser } from "@/hooks/useUser";
-import { fetchListings } from "@/hooks/useListing";
+import { fetchListingByIds } from "@/hooks/useListing";
 import ListingCard from "@/components/components/ListingCard";
 
 function MyFavoritesPage() {
@@ -9,17 +9,16 @@ function MyFavoritesPage() {
     queryFn: () => fetchUser(),
   });
 
-  const { data: listings } = useQuery({
-    queryKey: ["listing"],
-    queryFn: fetchListings,
-  });
-
   const favorites = user?.favorites || [];
 
-  const favoriteListings =
-    listings?.filter((listing) => favorites.includes(listing._id)) || [];
+  // Fetch favorite listings only when favorites are available
+  const { data: favoriteListings = [], isLoading: favLoading } = useQuery({
+    queryKey: ["favoriteListings", favorites],
+    queryFn: () => fetchListingByIds(favorites),
+    enabled: favorites.length > 0,
+  });
 
-  if (isLoading) {
+  if (isLoading || favLoading) {
     return <p className="flex justify-center items-center">Loading...</p>;
   }
 

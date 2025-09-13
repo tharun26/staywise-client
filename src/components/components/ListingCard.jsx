@@ -4,10 +4,13 @@ import { addFavourite, removeFavourite } from "@/hooks/useUser";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { Heart } from "lucide-react";
+import { AuthContext } from "@/context/AuthContext";
+import { useContext } from "react";
 
 function ListingCard({ listing, isFav }) {
   const navigate = useNavigate();
   const [liked, setLiked] = useState(isFav);
+  const { user } = useContext(AuthContext);
 
   const queryClient = useQueryClient();
   const MakeAListingFavourite = useMutation({
@@ -50,16 +53,18 @@ function ListingCard({ listing, isFav }) {
           className="w-full h-full object-cover"
           alt={listing.title}
         />
-        <button
-          className="absolute top-3 right-3 bg-white/80 rounded-full p-1 hover:bg-white shadow"
-          onClick={handleFavouriteClick}
-        >
-          <Heart
-            size={28}
-            fill={liked ? "#ef4444" : "none"}
-            color={liked ? "#ef4444" : "#374151"}
-          />
-        </button>
+        {user && (
+          <button
+            className="absolute top-3 right-3 bg-white/80 rounded-full p-1 hover:bg-white shadow"
+            onClick={handleFavouriteClick}
+          >
+            <Heart
+              size={28}
+              fill={liked ? "#ef4444" : "none"}
+              color={liked ? "#ef4444" : "#374151"}
+            />
+          </button>
+        )}
       </div>
       <div className="p-4 flex-1 flex flex-col">
         <h3 className="font-semibold truncate" title={listing.title}>
