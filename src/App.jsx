@@ -1,15 +1,15 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
+import { Toaster } from "sonner";
 import HomePage from "./pages/HomePage";
-import ListingDetailsPage from "./pages/ListingDetailsPage/ListingDetailsPage";
 import SideBar from "@/components/components/SideBar";
-
 import LoginModal from "./components/components/LoginModal";
 import SignupModal from "./components/components/SignupModal";
 import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import MyFavoritesPage from "./pages/MyFavoritesPage";
-import { Toaster } from "sonner";
+import ListingDetailsPage from "./pages/ListingDetailsPage/ListingDetailsPage";
+import MyBookingsPage from "./pages/MyBookingsPage/MyBookingsPage";
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -41,6 +41,7 @@ function App() {
             />
             <Route path="/user/favorites" element={<MyFavoritesPage />} />
             <Route path="/user" element={<UserProfilePage />} />
+            <Route path="/myBookings" element={<MyBookingsPage />} />
           </Routes>
           <Toaster position="top-center" />
         </div>

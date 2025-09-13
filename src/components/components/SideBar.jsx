@@ -22,9 +22,9 @@ const SideBar = () => {
           Home
         </div>
         <div
-          onClick={() => navigate("/user/bookings")}
+          onClick={() => navigate("/myBookings")}
           className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
-            isActive("/user/bookings") ? "text-blue-600" : "text-gray-700"
+            isActive("/myBookings") ? "text-blue-600" : "text-gray-700"
           }`}
         >
           <CalendarCheck className="w-6 h-6" />
