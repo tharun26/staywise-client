@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import { Calendar } from "@/components/ui/calendar";
 
 export function BookedCalendar({ listingId }) {
-  // State for selected range
   const [selectedRange, setSelectedRange] = useState({
     from: undefined,
     to: undefined,
