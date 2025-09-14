@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { useState } from "react";
 import { Toaster } from "sonner";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/HomePage/HomePage";
 import SideBar from "@/components/components/SideBar";
 import LoginModal from "./components/components/LoginModal";
 import SignupModal from "./components/components/SignupModal";

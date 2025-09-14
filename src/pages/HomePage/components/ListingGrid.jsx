@@ -1,6 +1,6 @@
 import { fetchListings } from "@/hooks/useListing";
 import { useQuery } from "@tanstack/react-query";
-import ListingCard from "./ListingCard";
+import ListingCard from "../../../components/components/ListingCard";
 import { getFavourites } from "@/hooks/useUser";
 import { AuthContext } from "@/context/AuthContext";
 import { useContext, useState } from "react";
