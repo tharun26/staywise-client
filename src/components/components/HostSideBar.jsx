@@ -1,19 +1,12 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import { Home, CalendarCheck, Heart, User } from "lucide-react";
+import React from "react";
 import { Switch } from "@/components/ui/switch";
-import HostSideBar from "./HostSideBar";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Home, List, CalendarCheck, User } from "lucide-react";
 
-const SideBar = () => {
-  const [isHost, setIsHost] = useState(false);
+const HostSideBar = ({ isHost, setIsHost }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
-
-  if (isHost) {
-    return <HostSideBar isHost={isHost} setIsHost={setIsHost} />;
-  }
-
   return (
     <aside className="w-64 h-screen bg-white border-r px-4 py-6 flex flex-col relative">
       <div className="flex items-center mb-8">
@@ -39,30 +32,30 @@ const SideBar = () => {
             Home
           </div>
           <div
-            onClick={() => navigate("/myBookings")}
+            onClick={() => navigate("/host/myListings")}
             className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
-              isActive("/myBookings") ? "text-blue-600" : "text-gray-700"
+              isActive("/host/myListings") ? "text-blue-600" : "text-gray-700"
+            }`}
+          >
+            <List className="w-6 h-6" />
+            My Listings
+          </div>
+          <div
+            onClick={() => navigate("/host/myBookings")}
+            className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
+              isActive("/host/myBookings") ? "text-blue-600" : "text-gray-700"
             }`}
           >
             <CalendarCheck className="w-6 h-6" />
             My Bookings
           </div>
           <div
-            className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
-              isActive("/user/favorites") ? "text-blue-600" : "text-gray-700"
-            }`}
-            onClick={() => navigate("/user/favorites")}
-          >
-            <Heart className="w-6 h-6" />
-            My Favourites
-          </div>
-          <div
+            onClick={() => navigate("/user")}
             className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
               isActive("/user") ? "text-blue-600" : "text-gray-700"
             }`}
-            onClick={() => navigate("/user")}
           >
-            <User className="w-6 h-6 " />
+            <User className="w-6 h-6" />
             User Profile
           </div>
         </div>
@@ -82,4 +75,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default HostSideBar;

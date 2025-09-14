@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { addFavourite, removeFavourite } from "@/hooks/useUser";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
-import { Heart } from "lucide-react";
+import { Heart, VenetianMask } from "lucide-react";
 import { AuthContext } from "@/context/AuthContext";
 import { useContext } from "react";
 
@@ -70,8 +70,14 @@ function ListingCard({ listing, isFav }) {
         <h3 className="font-semibold truncate" title={listing.title}>
           {listing.title}
         </h3>
-        <div className="mt-2 text-gray-800 font-medium">
-          €{listing.pricePerNight} per Night
+        <div className="flex justify-between items-center">
+          <div className="text-gray-800 font-medium flex items-center">
+            €{listing.pricePerNight} per Night
+          </div>
+          <div title="Guests Allowed" className="flex gap-2 items-center">
+            <VenetianMask color="#d7bf1d" />
+            <span>{listing.maxGuests}</span>
+          </div>
         </div>
       </div>
     </div>

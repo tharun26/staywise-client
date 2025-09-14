@@ -17,3 +17,12 @@ export const fetchBooking = async () => {
     console.log(error);
   }
 };
+
+export const cancelBooking = async (bookingid) => {
+  try {
+    const response = await api.put(`/bookings/${bookingid}/cancel`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

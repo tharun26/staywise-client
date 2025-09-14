@@ -1,8 +1,7 @@
 import React from "react";
-import BookingCard from "./BookingCard";
+import BookingCard from "./components/BookingCard";
 import { useQuery } from "@tanstack/react-query";
 import { fetchBooking } from "@/hooks/useBooking";
-
 
 function MyBookingsPage() {
   const { data: booking, isLoading } = useQuery({
