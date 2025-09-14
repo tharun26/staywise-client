@@ -26,3 +26,21 @@ export const cancelBooking = async (bookingid) => {
     console.log(error);
   }
 };
+
+export const cancelBookingByHost = async (bookingid) => {
+  try {
+    const response = await api.put(`/bookings/${bookingid}/cancel/host`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const fetchHostBooking = async () => {
+  try {
+    const response = await api.get("/bookings/host");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -39,3 +39,41 @@ export const fetchListingByIds = async (ids) => {
     return [];
   }
 };
+
+export const fetchListingsHost = async () => {
+  try {
+    const response = await api.get("/listings/host");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const postListingsHost = async (listingData) => {
+  try {
+    // Always send as JSON, no photo upload
+    const response = await api.post("/listings", listingData);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editListingsHost = async (newListingData) => {
+  const { listingId } = newListingData;
+  try {
+    const response = await api.put(`/listings/${listingId}`, newListingData);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteListingsHost = async (listingid) => {
+  try {
+    const response = await api.delete(`/listings/${listingid}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

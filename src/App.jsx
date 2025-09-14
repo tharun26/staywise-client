@@ -10,6 +10,10 @@ import UserProfilePage from "./pages/UserProfilePage/UserProfilePage";
 import MyFavoritesPage from "./pages/MyFavoritesPage";
 import ListingDetailsPage from "./pages/ListingDetailsPage/ListingDetailsPage";
 import MyBookingsPage from "./pages/MyBookingsPage/MyBookingsPage";
+import HostListingsPage from "./pages/HostListingsPage/HostListingsPage";
+import HostBookingPage from "./pages/HostBookingPage/HostBookingPage";
+import CreateListing from "./pages/HostListingsPage/CreateListing";
+import EditListing from "./pages/HostListingsPage/EditListing";
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -42,6 +46,10 @@ function App() {
             <Route path="/user/favorites" element={<MyFavoritesPage />} />
             <Route path="/user" element={<UserProfilePage />} />
             <Route path="/myBookings" element={<MyBookingsPage />} />
+            <Route path="/host/myListings" element={<HostListingsPage />} />
+            <Route path="/host/myBookings" element={<HostBookingPage />} />
+            <Route path="/createListing" element={<CreateListing />} />
+            <Route path="/edit/:listingId" element={<EditListing />} />
           </Routes>
           <Toaster position="top-center" />
         </div>
