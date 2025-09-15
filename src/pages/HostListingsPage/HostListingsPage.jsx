@@ -27,7 +27,11 @@ const ListingGrid = () => {
   }
 
   if (listingsError) {
-    return <div>Error loading data.</div>;
+    return (
+      <div className="flex justify-center items-center h-64 text-xl text-gray-500 my-[20%]">
+        Kindly Login to view your Listing
+      </div>
+    );
   }
 
   return (

@@ -5,8 +5,7 @@ import { getFavourites } from "@/hooks/useUser";
 import { AuthContext } from "@/context/AuthContext";
 import { useContext, useState } from "react";
 
-const ListingGrid = () => {
-  // Pagination state
+const ListingGrid = ({ searchValue }) => {
   const [page, setPage] = useState(1);
   const limit = 12;
   const { user } = useContext(AuthContext);
@@ -16,8 +15,8 @@ const ListingGrid = () => {
     isLoading: listingsLoading,
     isError: listingsError,
   } = useQuery({
-    queryKey: ["listing", page, limit],
-    queryFn: () => fetchListings({ page, limit }),
+    queryKey: ["listing", page, limit, searchValue],
+    queryFn: () => fetchListings({ page, limit, city: searchValue }),
     keepPreviousData: true,
   });
 
@@ -39,8 +38,15 @@ const ListingGrid = () => {
     return <div>Error loading data.</div>;
   }
 
-  // listingsData: { data, total, page, limit, totalPages }
   const { data: listings = [], totalPages = 1 } = listingsData || {};
+
+  if (!listings || listings.length === 0) {
+    return (
+      <div className="flex justify-center items-center h-64 text-xl text-gray-500">
+        No listings available
+      </div>
+    );
+  }
 
   return (
     <>

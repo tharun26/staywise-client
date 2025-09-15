@@ -29,7 +29,7 @@ function MyFavoritesPage() {
       ))}
     </div>
   ) : (
-    <div className="font-bold flex justify-center items-center my-[30%]">
+    <div className="flex justify-center items-center h-64 text-xl text-gray-500 my-[20%]">
       You have no Favorite Listing!!!
     </div>
   );

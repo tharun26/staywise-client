@@ -3,8 +3,12 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import TopBarButton from "./TopBarButton";
 
-const TopBar = ({ setShowLoginModal, setShowSignupModal }) => {
-  const [searchValue, setSearchValue] = React.useState("");
+const TopBar = ({
+  setShowLoginModal,
+  setShowSignupModal,
+  searchValue,
+  setSearchValue,
+}) => {
   const handleCityClick = (city) => {
     setSearchValue(city);
   };
@@ -22,14 +26,17 @@ const TopBar = ({ setShowLoginModal, setShowSignupModal }) => {
             onChange={(e) => setSearchValue(e.target.value)}
             style={{ background: "transparent" }}
           />
-          <Button variant="outline" onClick={() => handleCityClick("New York")}>
+          <Button
+            variant="outline"
+            onClick={() => handleCityClick("Amsterdam")}
+          >
             Amsterdam
           </Button>
-          <Button variant="outline" onClick={() => handleCityClick("Tokyo")}>
+          <Button variant="outline" onClick={() => handleCityClick("Berlin")}>
             Berlin
           </Button>
-          <Button variant="outline" onClick={() => handleCityClick("Italy")}>
-            Italy
+          <Button variant="outline" onClick={() => handleCityClick("Rome")}>
+            Rome
           </Button>
         </div>
       </div>

@@ -1,9 +1,12 @@
 import api from "../services/api";
 
-export const fetchListings = async ({ page = 1, limit = 8 } = {}) => {
+export const fetchListings = async ({ page = 1, limit = 8, city } = {}) => {
   try {
+    const params = { page, limit };
+    if (city) params.city = city;
+
     const response = await api.get("/listings", {
-      params: { page, limit },
+      params,
     });
     return response.data;
   } catch (error) {

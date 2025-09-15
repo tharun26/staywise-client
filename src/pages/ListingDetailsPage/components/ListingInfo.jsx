@@ -6,6 +6,7 @@ import { BookedCalendar } from "./BookedCalendar";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createBooking } from "@/hooks/useBooking";
 import { toast } from "sonner";
+import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const ListingInfo = ({ listing, listingid }) => {
@@ -15,6 +16,7 @@ const ListingInfo = ({ listing, listingid }) => {
   });
 
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const queryClient = useQueryClient();
   const reserveAListing = useMutation({
@@ -64,7 +66,7 @@ const ListingInfo = ({ listing, listingid }) => {
           <Button
             onClick={handleReserve}
             className="px-6"
-            disabled={!(selectedRange.from && selectedRange.to)}
+            disabled={!(selectedRange.from && selectedRange.to) || !user}
           >
             Reserve
           </Button>

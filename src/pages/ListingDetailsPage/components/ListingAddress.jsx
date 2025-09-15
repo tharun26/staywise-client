@@ -15,6 +15,7 @@ function ListingAddress({ listing }) {
         </div>
       </div>
       {listing.address.location &&
+        listing.address.location.coordinates &&
         listing.address.location.coordinates.length === 2 && (
           <div className="flex-shrink-0 w-full lg:w-[400px] h-[250px] rounded-2xl overflow-hidden bg-blue-50 flex items-center justify-center">
             <ListingMap

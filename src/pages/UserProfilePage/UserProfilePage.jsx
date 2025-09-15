@@ -147,7 +147,7 @@ function UserProfilePage() {
       </div>
     </div>
   ) : (
-    <div className="flex justify-center items-center my-[20%] font-extrabold ">
+    <div className="flex justify-center items-center h-64 text-xl text-gray-500 my-[20%]">
       Kindly Login to see the User Profile
     </div>
   );
