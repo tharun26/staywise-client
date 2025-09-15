@@ -66,7 +66,7 @@ const ListingInfo = ({ listing, listingid }) => {
           <Button
             onClick={handleReserve}
             className="px-6"
-            disabled={!(selectedRange.from && selectedRange.to) || !user}
+            disabled={!selectedRange?.from || !selectedRange?.to || !user}
           >
             Reserve
           </Button>

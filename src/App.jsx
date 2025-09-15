@@ -14,6 +14,7 @@ import HostListingsPage from "./pages/HostListingsPage/HostListingsPage";
 import HostBookingPage from "./pages/HostBookingPage/HostBookingPage";
 import CreateListing from "./pages/HostListingsPage/CreateListing";
 import EditListing from "./pages/HostListingsPage/EditListing";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
   const [showLoginModal, setShowLoginModal] = useState(false);
@@ -43,13 +44,17 @@ function App() {
               path="/listing/:listingid"
               element={<ListingDetailsPage />}
             />
-            <Route path="/user/favorites" element={<MyFavoritesPage />} />
-            <Route path="/user" element={<UserProfilePage />} />
-            <Route path="/myBookings" element={<MyBookingsPage />} />
-            <Route path="/host/myListings" element={<HostListingsPage />} />
-            <Route path="/host/myBookings" element={<HostBookingPage />} />
-            <Route path="/createListing" element={<CreateListing />} />
-            <Route path="/edit/:listingId" element={<EditListing />} />
+            <Route
+              element={<ProtectedRoute setShowLoginModal={setShowLoginModal} />}
+            >
+              <Route path="/user/favorites" element={<MyFavoritesPage />} />
+              <Route path="/user" element={<UserProfilePage />} />
+              <Route path="/myBookings" element={<MyBookingsPage />} />
+              <Route path="/host/myListings" element={<HostListingsPage />} />
+              <Route path="/host/myBookings" element={<HostBookingPage />} />
+              <Route path="/createListing" element={<CreateListing />} />
+              <Route path="/edit/:listingId" element={<EditListing />} />
+            </Route>
           </Routes>
           <Toaster position="top-center" />
         </div>

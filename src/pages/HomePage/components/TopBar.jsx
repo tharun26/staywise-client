@@ -20,7 +20,7 @@ const TopBar = ({
           style={{ minWidth: 480 }}
         >
           <Input
-            placeholder="Search city or country"
+            placeholder="Search city"
             className="w-[340px] focus:ring-0 border-0 shadow-none text-base"
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}

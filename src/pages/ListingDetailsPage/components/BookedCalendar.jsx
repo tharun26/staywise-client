@@ -30,6 +30,7 @@ export function BookedCalendar({ listingId, selectedRange, setSelectedRange }) {
         mode="range"
         selected={selectedRange}
         onSelect={(range) => {
+          console.log("🚀 ~ range:", range);
           setSelectedRange(range);
         }}
         disabled={disabledDates}

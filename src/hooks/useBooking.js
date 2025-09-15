@@ -23,6 +23,7 @@ export const cancelBooking = async (bookingid) => {
     const response = await api.put(`/bookings/${bookingid}/cancel`);
     return response.data;
   } catch (error) {
+    
     console.log(error);
   }
 };

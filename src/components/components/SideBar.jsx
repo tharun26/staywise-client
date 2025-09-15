@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Home, CalendarCheck, Heart, User } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import HostSideBar from "./HostSideBar";
+import { AuthContext } from "@/context/AuthContext";
 
 const SideBar = () => {
   const [isHost, setIsHost] = useState(false);
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
@@ -38,33 +40,39 @@ const SideBar = () => {
             <Home className="w-6 h-6" />
             Home
           </div>
-          <div
-            onClick={() => navigate("/myBookings")}
-            className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
-              isActive("/myBookings") ? "text-blue-600" : "text-gray-700"
-            }`}
-          >
-            <CalendarCheck className="w-6 h-6" />
-            My Bookings
-          </div>
-          <div
-            className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
-              isActive("/user/favorites") ? "text-blue-600" : "text-gray-700"
-            }`}
-            onClick={() => navigate("/user/favorites")}
-          >
-            <Heart className="w-6 h-6" />
-            My Favourites
-          </div>
-          <div
-            className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
-              isActive("/user") ? "text-blue-600" : "text-gray-700"
-            }`}
-            onClick={() => navigate("/user")}
-          >
-            <User className="w-6 h-6 " />
-            User Profile
-          </div>
+          {user && (
+            <>
+              <div
+                onClick={() => navigate("/myBookings")}
+                className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
+                  isActive("/myBookings") ? "text-blue-600" : "text-gray-700"
+                }`}
+              >
+                <CalendarCheck className="w-6 h-6" />
+                My Bookings
+              </div>
+              <div
+                className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
+                  isActive("/user/favorites")
+                    ? "text-blue-600"
+                    : "text-gray-700"
+                }`}
+                onClick={() => navigate("/user/favorites")}
+              >
+                <Heart className="w-6 h-6" />
+                My Favourites
+              </div>
+              <div
+                className={`flex items-center gap-3 font-semibold text-lg cursor-pointer ${
+                  isActive("/user") ? "text-blue-600" : "text-gray-700"
+                }`}
+                onClick={() => navigate("/user")}
+              >
+                <User className="w-6 h-6 " />
+                User Profile
+              </div>
+            </>
+          )}
         </div>
       </nav>
       <div className="fixed bottom-8 left-0 w-64 flex justify-center z-50">
