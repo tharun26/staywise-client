@@ -11,6 +11,7 @@ const initialState = {
   maxGuests: 1,
   bedrooms: 0,
   bathrooms: 0,
+  photo: null,
 };
 
 const initialAddress = {
@@ -50,7 +51,13 @@ function CreateListing() {
   });
 
   const handleChange = (e) => {
-    const { name, value, checked } = e.target;
+    const { name, value, checked, files } = e.target;
+    if (name === "photo") {
+      setForm((prev) => {
+        return { ...prev, [name]: files[0] };
+      });
+      return;
+    }
     if (name === "amenities") {
       setForm((prev) => {
         const selected = prev.amenities || [];
@@ -75,10 +82,37 @@ function CreateListing() {
     });
   };
 
+  const convertToFormData = (payload) => {
+    const formDataPayload = new FormData();
+
+    for (const key in payload) {
+      const value = payload[key];
+
+      if (key === "address") {
+        for (const addrKey in value) {
+          formDataPayload.append(`address.${addrKey}`, value[addrKey]);
+        }
+      } else if (Array.isArray(value)) {
+        value.forEach((item, index) => {
+          formDataPayload.append(`${key}[${index}]`, item);
+        });
+      } else if (key === "photo" && value) {
+        formDataPayload.append("photo", value);
+      } else if (value !== null && value !== undefined) {
+        formDataPayload.append(key, value);
+      }
+    }
+    return formDataPayload;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { address: addressForm, ...form };
-    createAListing.mutate(payload);
+    console.log("🚀 ~ handleSubmit ~ payload:", payload);
+
+    const formDataFormat = convertToFormData(payload);
+
+    createAListing.mutate(formDataFormat);
     navigate("/host/myListings");
   };
   return (
@@ -127,6 +161,24 @@ function CreateListing() {
               onChange={handleChange}
               required
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-200"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 font-medium mb-1">
+              Upload Photo
+            </label>
+            <input
+              type="file"
+              accept="image/*"
+              name="photo"
+              onChange={handleChange}
+              className="block w-full text-sm text-gray-500
+                 file:mr-4 file:py-2 file:px-4
+                 file:rounded-lg file:border-0
+                 file:text-sm file:font-semibold
+                 file:bg-blue-50 file:text-blue-700
+                 hover:file:bg-blue-100"
             />
           </div>
 

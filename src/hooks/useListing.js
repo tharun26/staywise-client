@@ -54,7 +54,6 @@ export const fetchListingsHost = async () => {
 
 export const postListingsHost = async (listingData) => {
   try {
-    // Always send as JSON, no photo upload
     const response = await api.post("/listings", listingData);
     return response.data;
   } catch (error) {
