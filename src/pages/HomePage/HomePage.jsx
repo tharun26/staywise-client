@@ -1,9 +1,10 @@
 import ListingGrid from "./components/ListingGrid";
+import { useState } from "react";
 import React from "react";
 import TopBar from "./components/TopBar";
 
 function HomePage({ setShowLoginModal, setShowSignupModal }) {
-  const [searchValue, setSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = useState("");
 
   return (
     <main className="flex-1 p-6 overflow-y-auto">
