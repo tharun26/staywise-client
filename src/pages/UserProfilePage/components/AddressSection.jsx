@@ -90,7 +90,7 @@ function AddressSection({ addressForm, handleAddressChange, isEditing }) {
           </label>
           <input
             name="postalCode"
-            type="text"
+            type="number"
             value={addressForm.postalCode}
             onChange={handleAddressChange}
             readOnly={!isEditing}
