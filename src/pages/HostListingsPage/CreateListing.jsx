@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { postListingsHost } from "@/hooks/useListing";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "sonner";
 const initialState = {
   title: "",
   description: "",
@@ -47,6 +47,10 @@ function CreateListing() {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userData"] });
       queryClient.invalidateQueries({ queryKey: ["hostListings"] });
+      toast.success("Listing created!", {
+        description: "Your listing is live now",
+        duration: 3000,
+      });
     },
   });
 
@@ -108,10 +112,7 @@ function CreateListing() {
   const handleSubmit = (e) => {
     e.preventDefault();
     const payload = { address: addressForm, ...form };
-    console.log("🚀 ~ handleSubmit ~ payload:", payload);
-
     const formDataFormat = convertToFormData(payload);
-
     createAListing.mutate(formDataFormat);
     navigate("/host/myListings");
   };

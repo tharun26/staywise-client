@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { fetchListing, editListingsHost } from "@/hooks/useListing";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 const AMENITIES = [
   "WiFi",
@@ -41,6 +42,10 @@ function EditListing() {
     mutationFn: (newListingData) => editListingsHost(newListingData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["hostlisting"] });
+      toast.success("Listing updated!", {
+        description: "Your listing updated",
+        duration: 3000,
+      });
     },
   });
 

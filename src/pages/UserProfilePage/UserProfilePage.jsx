@@ -50,6 +50,10 @@ function UserProfilePage() {
     mutationFn: (newUserData) => editUser(newUserData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userData"] });
+      toast.success("Data Updated!", {
+        description: "Your Personal Information is updated Successfully",
+        duration: 3000,
+      });
     },
   });
 
@@ -80,7 +84,6 @@ function UserProfilePage() {
         },
       };
       editTheUser.mutate(submitData);
-      toast.success("Updated Successfully");
       setIsEditing(false);
     } else {
       setIsEditing(true);

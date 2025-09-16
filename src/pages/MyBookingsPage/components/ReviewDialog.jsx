@@ -16,11 +16,13 @@ import {
 } from "@/hooks/useReviews";
 import { Rating } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
+import { toast } from "sonner";
 
 export default function ReviewDialog({ open, setOpen, booking }) {
   const { data: review, isLoading } = useQuery({
-    queryKey: ["review"],
+    queryKey: ["review", booking._id],
     queryFn: () => fetchReview(booking._id),
+    enabled: open,
   });
 
   const [comment, setComment] = useState("");
@@ -38,6 +40,9 @@ export default function ReviewDialog({ open, setOpen, booking }) {
     mutationFn: (newReview) => createReview(newReview),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["review"] });
+      toast.success("Review created successfully!", {
+        duration: 3000,
+      });
     },
   });
 
@@ -45,6 +50,9 @@ export default function ReviewDialog({ open, setOpen, booking }) {
     mutationFn: (reviewPayload) => editReview(reviewPayload),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["review"] });
+      toast.success("Review edited successfully!", {
+        duration: 3000,
+      });
     },
   });
 
@@ -52,6 +60,9 @@ export default function ReviewDialog({ open, setOpen, booking }) {
     mutationFn: (reviewid) => deleteReview(reviewid),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["review"] });
+      toast.success("Review deleted successfully!", {
+        duration: 3000,
+      });
     },
   });
 
@@ -119,9 +130,11 @@ export default function ReviewDialog({ open, setOpen, booking }) {
           <Button variant="outline" onClick={() => setOpen(false)}>
             Cancel
           </Button>
-          <Button variant="destructive" onClick={handleDelete}>
-            Delete Review
-          </Button>
+          {review && review.length > 0 ? (
+            <Button variant="destructive" onClick={handleDelete}>
+              Delete Review
+            </Button>
+          ) : null}
           {review && review.length > 0 ? (
             <Button onClick={handleEdit} className="bg-blue-600 text-white">
               Edit Review

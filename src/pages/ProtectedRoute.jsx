@@ -3,13 +3,18 @@ import { AuthContext } from "@/context/AuthContext";
 import { Outlet, Navigate } from "react-router-dom";
 
 function ProtectedRoute({ setShowLoginModal }) {
-  const { user } = useContext(AuthContext);
+  const { user, loading } = useContext(AuthContext);
 
   useEffect(() => {
-    if (!user) {
+    if (loading) {
+      return;
+    }
+    if (user) {
+      setShowLoginModal(false);
+    } else {
       setShowLoginModal(true);
     }
-  }, [user, setShowLoginModal]);
+  }, [user, setShowLoginModal, loading]);
   return user ? <Outlet /> : null;
 }
 

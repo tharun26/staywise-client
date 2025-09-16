@@ -31,12 +31,15 @@ export default function BookingCard({ booking }) {
     mutationFn: (bookingid) => cancelBooking(bookingid),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myBooking"] });
+      toast.success("Booking Cancelled!", {
+        description: "Your Booking is now cancelled",
+        duration: 3000,
+      });
     },
   });
 
   const handleCancelBooking = () => {
     cancelABooking.mutate(booking._id);
-    toast.success("Booking cancelled");
   };
   return (
     <Card className="flex flex-row items-center justify-between p-8 rounded-3xl shadow-sm border border-gray-200 bg-white max-w-7xl w-full">
@@ -58,7 +61,7 @@ export default function BookingCard({ booking }) {
         <BookingActions
           onViewDetails={() => navigate(`/listing/${listing._id}`)}
           onCancelBooking={handleCancelBooking}
-        booking={booking}
+          booking={booking}
         />
       </div>
     </Card>

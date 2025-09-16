@@ -26,7 +26,6 @@ function MyBookingsPage() {
           <BookingCard
             key={booking._id}
             booking={booking}
-            onMessageHost={() => alert("Message Host clicked!")}
           />
         ))}
     </div>
