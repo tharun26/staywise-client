@@ -23,6 +23,9 @@ const ListingInfo = ({ listing, listingid }) => {
     mutationFn: (newBooking) => createBooking(newBooking),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["booking"] });
+      toast.success("Booked Successfully", {
+        description: `You have booked ${listing.title}`,
+      });
     },
   });
 
@@ -40,7 +43,6 @@ const ListingInfo = ({ listing, listingid }) => {
       totalPrice,
     };
     reserveAListing.mutate(listingDetails);
-    toast.success("Booking Successful");
     navigate("/myBookings");
   };
 
