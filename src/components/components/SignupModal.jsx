@@ -47,9 +47,9 @@ export default function LoginModal({ open, onOpenChange }) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-[400px]">
         <DialogHeader>
-          <DialogTitle>Login to Your Account</DialogTitle>
+          <DialogTitle>Sign-up</DialogTitle>
           <DialogDescription>
-            Enter your credentials or login with Google
+            Enter your credentials 
           </DialogDescription>
         </DialogHeader>
 

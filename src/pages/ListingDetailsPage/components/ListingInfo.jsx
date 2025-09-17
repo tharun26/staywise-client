@@ -26,6 +26,7 @@ const ListingInfo = ({ listing, listingid }) => {
       toast.success("Booked Successfully", {
         description: `You have booked ${listing.title}`,
       });
+      navigate("/myBookings");
     },
   });
 
@@ -43,7 +44,6 @@ const ListingInfo = ({ listing, listingid }) => {
       totalPrice,
     };
     reserveAListing.mutate(listingDetails);
-    navigate("/myBookings");
   };
 
   return (
