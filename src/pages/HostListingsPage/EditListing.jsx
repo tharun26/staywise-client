@@ -89,7 +89,7 @@ function EditListing() {
     <div className="flex justify-center items-center min-h-screen bg-slate-50 py-8">
       <div className="bg-white rounded-2xl border border-gray-200 p-8 w-full max-w-3xl shadow-sm">
         <h2 className="text-2xl font-semibold text-gray-900 mb-6 text-center">
-          Edit a New Listing
+          Edit {listing.title}
         </h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>

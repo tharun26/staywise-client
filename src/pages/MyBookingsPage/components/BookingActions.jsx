@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { UserStar, Binoculars, MessageCircle, CircleX } from "lucide-react";
+import { UserStar, Binoculars, CircleX } from "lucide-react";
 import ReviewDialog from "./ReviewDialog";
 
 export default function BookingActions({

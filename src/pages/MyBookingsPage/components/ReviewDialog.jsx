@@ -29,7 +29,6 @@ export default function ReviewDialog({ open, setOpen, booking }) {
   const [rating, setRating] = useState(review?.rating ? review.rating : 0);
 
   useEffect(() => {
-    console.log(review);
     review && review.length > 0 && setComment(review[0].comment);
     review && review.length > 0 && setRating(review[0].rating);
   }, [review]);
