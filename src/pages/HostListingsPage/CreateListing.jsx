@@ -51,6 +51,7 @@ function CreateListing() {
         description: "Your listing is live now",
         duration: 3000,
       });
+      navigate("/host/myListings");
     },
   });
 
@@ -114,7 +115,6 @@ function CreateListing() {
     const payload = { address: addressForm, ...form };
     const formDataFormat = convertToFormData(payload);
     createAListing.mutate(formDataFormat);
-    navigate("/host/myListings");
   };
   return (
     <div className="flex justify-center items-center min-h-screen bg-slate-50 py-8">

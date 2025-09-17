@@ -7,6 +7,7 @@ export default function BookingInfo({
   checkIn,
   checkOut,
   guests,
+  hostName,
 }) {
   return (
     <div className="flex flex-col gap-2 min-w-0">
@@ -27,6 +28,12 @@ export default function BookingInfo({
         <span className="flex items-center gap-1">
           <User className="w-4 h-4" aria-hidden="true" />
           {guests || 2} Guests
+        </span>
+      </div>
+      <div className="flex items-center gap-4 text-base text-gray-700">
+        <span className="flex items-center gap-1">
+          <User className="w-4 h-4" aria-hidden="true" />
+          Host Name: {hostName}
         </span>
       </div>
     </div>

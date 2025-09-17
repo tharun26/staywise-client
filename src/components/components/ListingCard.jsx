@@ -17,6 +17,8 @@ function ListingCard({ listing, isFav }) {
     mutationFn: () => addFavourite(listing._id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userData"] });
+      queryClient.invalidateQueries({ queryKey: ["favoritesList"] });
+      queryClient.invalidateQueries({ queryKey: ["favoriteListings"] });
     },
   });
 
@@ -24,6 +26,8 @@ function ListingCard({ listing, isFav }) {
     mutationFn: () => removeFavourite(listing._id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userData"] });
+      queryClient.invalidateQueries({ queryKey: ["favoritesList"] });
+      queryClient.invalidateQueries({ queryKey: ["favoriteListings"] });
     },
   });
 

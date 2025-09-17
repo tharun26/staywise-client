@@ -20,11 +20,7 @@ const ListingGrid = ({ searchValue }) => {
     keepPreviousData: true,
   });
 
-  const {
-    data: favoritesList,
-    isLoading: favoritesListLoading,
-    isError: favoritesListError,
-  } = useQuery({
+  const { data: favoritesList, isLoading: favoritesListLoading } = useQuery({
     queryKey: ["favoritesList"],
     queryFn: getFavourites,
     enabled: !!user,
@@ -34,7 +30,7 @@ const ListingGrid = ({ searchValue }) => {
     return <div>Loading...</div>;
   }
 
-  if (listingsError || favoritesListError) {
+  if (listingsError) {
     return <div>Error loading data.</div>;
   }
 
@@ -57,7 +53,11 @@ const ListingGrid = ({ searchValue }) => {
               ? favoritesList.includes(listing._id)
               : false;
             return (
-              <ListingCard listing={listing} key={listing._id} isFav={isFav} />
+              <ListingCard
+                listing={listing}
+                key={`${listing._id}${isFav}`}
+                isFav={isFav}
+              />
             );
           })}
       </div>

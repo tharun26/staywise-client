@@ -265,7 +265,7 @@ function EditListing() {
               type="submit"
               className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl text-lg transition-colors duration-150"
             >
-              Create Listing
+              Update Listing
             </button>
           </div>
         </form>

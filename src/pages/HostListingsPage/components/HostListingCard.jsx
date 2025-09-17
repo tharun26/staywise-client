@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { deleteListingsHost } from "@/hooks/useListing";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 export default function HostListingCard({ listing }) {
   const navigate = useNavigate();
@@ -13,6 +14,10 @@ export default function HostListingCard({ listing }) {
     mutationFn: (listingid) => deleteListingsHost(listingid),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["hostlisting"] });
+      toast.success("Listing Deleted!", {
+        description: "Your listing is deleted now",
+        duration: 3000,
+      });
     },
   });
 

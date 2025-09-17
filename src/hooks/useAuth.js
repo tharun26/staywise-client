@@ -45,6 +45,7 @@ export const useAuth = () => {
       const response = await api.get("/auth/verify");
       setUser(response.data.user);
     } catch (error) {
+      setUser("");
       console.log(error);
     }
   };

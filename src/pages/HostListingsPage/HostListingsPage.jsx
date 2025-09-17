@@ -36,18 +36,17 @@ const ListingGrid = () => {
 
   return (
     <>
-      <div className="flex flex-col gap-4 mt-20">
-        <div className="flex justify-center mr-40">
-          <Button
-            variant="secondary"
-            size="sm"
-            className="w-48 flex items-center justify-center text-blue-600 border-2 border-blue-700 bg-white"
-            onClick={handleCreateListing}
-          >
-            <Plus className="mr-2" size={20} />
-            <span>Create New Listing</span>
-          </Button>
-        </div>
+      <div className="flex flex-col items-center gap-6 py-8 bg-slate-50 min-h-screen">
+        <Button
+          variant="secondary"
+          size="sm"
+          className="w-48 flex items-center justify-center text-blue-600 border-2 border-blue-700 bg-white"
+          onClick={handleCreateListing}
+        >
+          <Plus className="mr-2" size={20} />
+          <span>Create New Listing</span>
+        </Button>
+
         <div className="flex flex-col gap-6">
           {listings &&
             listings.map((listing) => {

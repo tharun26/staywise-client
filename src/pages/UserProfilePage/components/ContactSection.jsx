@@ -1,6 +1,13 @@
 import React from "react";
+import { useQuery } from "@tanstack/react-query";
+import { fetchBooking } from "@/hooks/useBooking";
 
 function ContactSection({ formData, isEditing, handleChange, user }) {
+  const { data: booking } = useQuery({
+    queryKey: ["myBooking"],
+    queryFn: () => fetchBooking(),
+  });
+
   return (
     <form className="bg-blue-50 rounded-2xl p-8 mt-8 w-full max-w-4xl mx-auto">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -11,7 +18,7 @@ function ContactSection({ formData, isEditing, handleChange, user }) {
             type="email"
             value={formData.email}
             readOnly
-            className="w-full bg-white rounded-xl px-6 py-4 text-lg font-semibold text-gray-900 border-none shadow-sm focus:ring-2 focus:ring-blue-200"
+            className="w-full rounded-xl px-6 py-4 text-lg font-semibold border-none shadow-sm focus:ring-2 focus:ring-blue-200 bg-gray-100 text-gray-400 cursor-not-allowed"
           />
         </div>
         <div>
@@ -30,13 +37,15 @@ function ContactSection({ formData, isEditing, handleChange, user }) {
           />
         </div>
         <div>
-          <label className="block text-gray-400 text-lg mb-2">Bookings</label>
+          <label className="block text-gray-400 text-lg mb-2">
+            Total Bookings
+          </label>
           <input
             name="bookings"
             type="text"
-            value={user.bookings}
+            value={booking ? booking.length : ""}
             readOnly
-            className="w-full bg-white rounded-xl px-6 py-4 text-lg font-semibold text-gray-900 border-none shadow-sm focus:ring-2 focus:ring-blue-200"
+            className="w-full rounded-xl px-6 py-4 text-lg font-semibold border-none shadow-sm focus:ring-2 focus:ring-blue-200 bg-gray-100 text-gray-400 cursor-not-allowed"
           />
         </div>
       </div>

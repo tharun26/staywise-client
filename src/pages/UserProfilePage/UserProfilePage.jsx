@@ -1,9 +1,12 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { fetchUser, editUser } from "@/hooks/useUser";
+import { fetchUser, editUser, deleteUser } from "@/hooks/useUser";
 import { Trash2, Pencil } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
+import { AuthContext } from "@/context/AuthContext";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Avatar from "react-avatar";
 import AddressSection from "./components/AddressSection";
 import ContactSection from "./components/ContactSection";
@@ -13,7 +16,8 @@ function UserProfilePage() {
     queryKey: ["userData"],
     queryFn: () => fetchUser(),
   });
-
+  const { verify } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     email: user?.email || "",
@@ -57,6 +61,20 @@ function UserProfilePage() {
     },
   });
 
+  const deleteTheUser = useMutation({
+    mutationFn: () => deleteUser(),
+    onSuccess: () => {
+      toast.success("User Deleted", {
+        description: "Your Personal Information is Deleted Successfully",
+        duration: 3000,
+      });
+      localStorage.removeItem("authToken");
+      verify();
+      navigate("/");
+      queryClient.invalidateQueries({ queryKey: ["userData"] });
+    },
+  });
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
@@ -90,6 +108,11 @@ function UserProfilePage() {
     }
   };
 
+  const handleDeleteUser = (e) => {
+    e.stopPropagation();
+    deleteTheUser.mutate();
+  };
+
   const joinDate = user?.createdAt
     ? new Date(user.createdAt).toLocaleDateString("en-US", {
         year: "numeric",
@@ -115,7 +138,10 @@ function UserProfilePage() {
             Joined on {joinDate}
           </span>
         </div>
-        <button className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-xl text-lg transition-colors duration-150">
+        <button
+          onClick={handleDeleteUser}
+          className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white font-semibold px-8 py-3 rounded-xl text-lg transition-colors duration-150"
+        >
           <Trash2 className="text-xl" />
           Delete Account
         </button>

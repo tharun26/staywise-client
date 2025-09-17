@@ -48,6 +48,7 @@ export default function BookingCard({ booking }) {
           checkIn={checkIn}
           checkOut={checkOut}
           guests={booking.guests}
+          guestName={booking.guestId.name}
         />
       </div>
       <div className="flex flex-col items-end gap-4 min-w-[200px] ml-8 self-stretch justify-center">

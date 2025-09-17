@@ -44,3 +44,12 @@ export const removeFavourite = async (listingid) => {
     console.log(error);
   }
 };
+
+export const deleteUser = async () => {
+  try {
+    const response = await api.delete("/users");
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
