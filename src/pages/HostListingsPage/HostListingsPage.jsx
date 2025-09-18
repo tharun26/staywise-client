@@ -46,7 +46,11 @@ const ListingGrid = () => {
           <Plus className="mr-2" size={20} />
           <span>Create New Listing</span>
         </Button>
-
+        {listings && listings.length == 0 && (
+          <div className="flex justify-center items-center h-64 text-xl text-gray-500 my-[20%]">
+            No Listings available
+          </div>
+        )}
         <div className="flex flex-col gap-6">
           {listings &&
             listings.map((listing) => {
