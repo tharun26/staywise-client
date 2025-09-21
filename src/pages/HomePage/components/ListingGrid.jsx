@@ -50,12 +50,12 @@ const ListingGrid = ({ searchValue }) => {
         {listings &&
           listings.map((listing) => {
             const isFav = favoritesList
-              ? favoritesList.includes(listing._id)
+              ? favoritesList.includes(listing.id)
               : false;
             return (
               <ListingCard
                 listing={listing}
-                key={`${listing._id}${isFav}`}
+                key={`${listing.id}${isFav}`}
                 isFav={isFav}
               />
             );

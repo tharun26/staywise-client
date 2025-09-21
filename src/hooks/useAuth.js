@@ -16,7 +16,7 @@ export const useAuth = () => {
 
   const signup = async (userData) => {
     try {
-      await api.post("/auth/signup", userData);
+      await api.post("/signup", userData);
       toast.success("Sign-up Successful", {
         description: "You have Signed-Up Successfully",
         duration: 3000,
@@ -28,8 +28,8 @@ export const useAuth = () => {
 
   const login = async (userData) => {
     try {
-      const response = await api.post("/auth/login", userData);
-      localStorage.setItem("authToken", response.data.token);
+      const response = await api.post("/login", userData);
+      localStorage.setItem("authToken", response.data.authToken);
       setUser(response.data.user);
       toast.success("Log-in Successful", {
         description: "You have Logged-in Successfully",
@@ -42,8 +42,8 @@ export const useAuth = () => {
 
   const verify = async () => {
     try {
-      const response = await api.get("/auth/verify");
-      setUser(response.data.user);
+      const response = await api.post("/verify");
+      setUser(response.data);
     } catch (error) {
       setUser("");
       console.log(error);

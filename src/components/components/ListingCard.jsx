@@ -14,7 +14,7 @@ function ListingCard({ listing, isFav }) {
 
   const queryClient = useQueryClient();
   const MakeAListingFavourite = useMutation({
-    mutationFn: () => addFavourite(listing._id),
+    mutationFn: () => addFavourite(listing.id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userData"] });
       queryClient.invalidateQueries({ queryKey: ["favoritesList"] });
@@ -23,7 +23,7 @@ function ListingCard({ listing, isFav }) {
   });
 
   const removeAListingFromFavourite = useMutation({
-    mutationFn: () => removeFavourite(listing._id),
+    mutationFn: () => removeFavourite(listing.id),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["userData"] });
       queryClient.invalidateQueries({ queryKey: ["favoritesList"] });

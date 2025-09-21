@@ -8,6 +8,7 @@ import { AuthContext } from "@/context/AuthContext";
 const SideBar = () => {
   const [isHost, setIsHost] = useState(false);
   const { user } = useContext(AuthContext);
+  console.log("🚀 ~ SideBar ~ user:", user)
   const navigate = useNavigate();
   const location = useLocation();
   const isActive = (path) => location.pathname === path;

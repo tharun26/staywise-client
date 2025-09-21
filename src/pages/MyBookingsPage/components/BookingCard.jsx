@@ -10,7 +10,7 @@ import BookingStatus from "./BookingStatus";
 import BookingActions from "./BookingActions";
 
 export default function BookingCard({ booking }) {
-  const listing = booking.listingId;
+  const listing = booking.listing;
   const checkInDate = new Date(booking.checkIn);
   const checkOutDate = new Date(booking.checkOut);
 
@@ -51,7 +51,7 @@ export default function BookingCard({ booking }) {
           checkIn={checkIn}
           checkOut={checkOut}
           guests={booking.guests}
-          hostName={listing.hostId.name}
+          hostName={listing.host.name}
         />
       </div>
       <div className="flex flex-col items-end gap-4 min-w-[200px] ml-8 self-stretch justify-center">
